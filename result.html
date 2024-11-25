@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Result</title>
+</head>
+<body>
+    <h1>Quiz Result</h1>
+    <p>You scored {{ score }} out of 10.</p>
+    {% if incorrect_answers %}
+        <h2>Incorrect Answers</h2>
+        <ul>
+        {% for i, question, correct_answer in incorrect_answers %}
+            <li>
+                <strong>Question {{ i }}:</strong> {{ question }} <br>
+                <em>Correct Answer: {{ correct_answer }}</em>
+            </li>
+        {% endfor %}
+        </ul>
+    {% else %}
+        <p>Congratulations! You answered all questions correctly.</p>
+    {% endif %}
+    <a href="{{ url_for('quiz') }}">Retry</a>
+</body>
+</html>

@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            min-height: 100vh;
+            margin: 0;
+            overflow-y: scroll;
+        }
+
+        .quiz-container {
+            background-color: #ffffff;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+            width: 50%;
+            max-height: 80vh;
+            overflow-y: auto;
+        }
+
+        h2 {
+            text-align: center;
+            color: #333;
+        }
+
+        .question {
+            margin-bottom: 20px;
+        }
+
+        .options {
+            list-style-type: none;
+            padding-left: 0;
+        }
+
+        .options li {
+            margin: 5px 0;
+        }
+
+        .submit-btn {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        .submit-btn:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+    <div class="quiz-container">
+        <h2>Level {{ level }}</h2>
+        <form method="POST">
+            {% for question in questions %}
+                <div class="question">
+                    <p><strong>Question {{ loop.index }}: {{ question[0] }}</strong></p>
+                    <ul class="options">
+                        <li><label><input type="radio" name="question{{ loop.index }}" value="a" required> {{ question[1] }}</label></li>
+                        <li><label><input type="radio" name="question{{ loop.index }}" value="b" required> {{ question[2] }}</label></li>
+                        <li><label><input type="radio" name="question{{ loop.index }}" value="c" required> {{ question[3] }}</label></li>
+                        <li><label><input type="radio" name="question{{ loop.index }}" value="d" required> {{ question[4] }}</label></li>
+                    </ul>
+                </div>
+            {% endfor %}
+            <button type="submit" class="submit-btn">Submit</button>
+        </form>
+    </div>
+</body>
+</html>
